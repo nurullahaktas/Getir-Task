@@ -1,0 +1,707 @@
+{
+	"info": {
+		"_postman_id": "4973f054-44e8-4d0b-bcee-fec2f0835f7a",
+		"name": "Cat Fact API",
+		"description": "An API for facts about cats\n\nContact Support:\n Email: contact@catfact.ninja",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15401020"
+	},
+	"item": [
+		{
+			"name": "Get a List of Breeds",
+			"item": [
+				{
+					"name": "Status Code Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"var schema = {\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"breed\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"country\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"origin\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"coat\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"pattern\": {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"breed\",\r",
+									"        \"country\",\r",
+									"        \"origin\",\r",
+									"        \"coat\",\r",
+									"        \"pattern\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"};\r",
+									"var result = tv4.validateMultiple(response, schema);\r",
+									"if (result.valid){\r",
+									"    pm.test(\"Contract: JSON Response has valid schema\"), setTestStatus;\r",
+									"} else {\r",
+									"    for (var i = 0; i < result.errors.length; i++) {\r",
+									"        pm.test('JSON Response is INVALID ' + result.errors[i].dataPath +\" \" + result.errors[i].message, setTestStatus);\r",
+									"    }\r",
+									"}\r",
+									"function setTestStatus() {\r",
+									"    pm.expect(result.valid).to.be.true;\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of breeds"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get a Random Fact",
+			"item": [
+				{
+					"name": "Status Code Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/fact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a random fact"
+					},
+					"response": []
+				},
+				{
+					"name": "Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"var schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"fact\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"length\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"fact\",\r",
+									"    \"length\"\r",
+									"  ]\r",
+									"};\r",
+									"var result = tv4.validateMultiple(response, schema);\r",
+									"if (result.valid){\r",
+									"    pm.test(\"Contract: JSON Response has valid schema\"), setTestStatus;\r",
+									"} else {\r",
+									"    for (var i = 0; i < result.errors.length; i++) {\r",
+									"        pm.test('JSON Response is INVALID ' + result.errors[i].dataPath +\" \" + result.errors[i].message, setTestStatus);\r",
+									"    }\r",
+									"}\r",
+									"function setTestStatus() {\r",
+									"    pm.expect(result.valid).to.be.true;\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/fact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a random fact"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/fact?max_length=20447145",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact"
+								}
+							]
+						},
+						"description": "Returns a random fact"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/fact?max_length=20447145",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact"
+								}
+							]
+						},
+						"description": "Returns a random fact"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get a List of Facts",
+			"item": [
+				{
+					"name": "Status Code Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "35",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of facts"
+					},
+					"response": []
+				},
+				{
+					"name": "Schema Validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();\r",
+									"var schema = {\r",
+									"  \"type\": \"array\",\r",
+									"  \"items\": [\r",
+									"    {\r",
+									"      \"type\": \"object\",\r",
+									"      \"properties\": {\r",
+									"        \"fact\": {\r",
+									"          \"type\": \"string\"\r",
+									"        },\r",
+									"        \"length\": {\r",
+									"          \"type\": \"integer\"\r",
+									"        }\r",
+									"      },\r",
+									"      \"required\": [\r",
+									"        \"fact\",\r",
+									"        \"length\"\r",
+									"      ]\r",
+									"    }\r",
+									"  ]\r",
+									"};\r",
+									"var result = tv4.validateMultiple(response, schema);\r",
+									"if (result.valid){\r",
+									"    pm.test(\"Contract: JSON Response has valid schema\"), setTestStatus;\r",
+									"} else {\r",
+									"    for (var i = 0; i < result.errors.length; i++) {\r",
+									"        pm.test('JSON Response is INVALID ' + result.errors[i].dataPath +\" \" + result.errors[i].message, setTestStatus);\r",
+									"    }\r",
+									"}\r",
+									"function setTestStatus() {\r",
+									"    pm.expect(result.valid).to.be.true;\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "35",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of facts"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of facts"
+					},
+					"response": []
+				},
+				{
+					"name": "Content Type Check Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/facts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "20447145",
+									"description": "maximum length of returned fact",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "20447145",
+									"description": "limit the amount of results returned",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Returns a a list of facts"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://catfact.ninja",
+			"type": "string"
+		}
+	]
+}
